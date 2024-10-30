@@ -1,7 +1,6 @@
 # lib/helpers.py
 
-def helper_1():
-    print("Performing useful function#1.")
+# from models.member import Member
 
 
 def exit_program():
