@@ -3,7 +3,7 @@ from models.__init__ import CURSOR, CONN
 class Workout_class:
     all = []
 
-    def __init__(self, class_name, id=None)
+    def __init__(self, class_name, id=None):
         self.class_name = class_name
         self.id = id
         Workout_class.all.append(self)
