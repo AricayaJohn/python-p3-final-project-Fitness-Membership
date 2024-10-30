@@ -4,10 +4,13 @@ class Member:
 
     all = []
 
-    def __init__(self, name, member_id=None):
+    def __init__(self, name, id=None):
         self.name = name
-        self.member_id = member_id
+        self.id = id
         Member.all.append(self)
+
+    def __repr__(self):
+        return f"Member name={self.name} id={self.id}"
 
     @property
     def name(self):
@@ -24,14 +27,11 @@ class Member:
             
     @property
     def member_id(self):
-        return self._member_id
+        return self._id
 
     @member_id.setter
-    def member_id(self, new_member_id):
-        if isinstance(new_member_id, int):
-            self._member_id = new_member_id
+    def member_id(self, new_id):
+        if isinstance(new_id, int):
+            self.r_id = new_id
         else:
             raise TypeError("Member id must be an integer")
-
-    def __repr__(self):
-        return f"Member name={self.name} member_id={self.id}"
