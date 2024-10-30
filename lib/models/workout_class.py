@@ -11,5 +11,9 @@ class Workout_class:
     def __repr__(self):
         return f"Workout Classes name={self.name} id={self.id}"
     
+    @property
+    def name(self):
+        return self._name
 
+    
     
