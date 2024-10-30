@@ -4,8 +4,8 @@ class Workout_class:
     all = []
 
     def __init__(self, name, id=None):
-        self.name = name
-        self.id = id
+        self._name = name
+        self._id = id
         Workout_class.all.append(self)
 
     def __repr__(self):
@@ -23,3 +23,14 @@ class Workout_class:
             self._name = new_name
         else:
             raise TypeError("Name must be a string")
+
+    @property
+    def id(self):
+        return self._id
+
+    @id.setter
+    def id(self, new_id):
+        if isinstance(new_id, int):
+            self._id = new_id
+        else:
+            raise TypeError("Workout session number")

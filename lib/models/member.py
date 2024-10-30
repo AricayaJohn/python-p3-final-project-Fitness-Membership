@@ -32,6 +32,6 @@ class Member:
     @member_id.setter
     def member_id(self, new_id):
         if isinstance(new_id, int):
-            self.r_id = new_id
+            self._id = new_id
         else:
             raise TypeError("Member id must be an integer")
