@@ -46,3 +46,15 @@ class Workout:
             self._id = new_id
         else:
             raise TypeError("Id must be a number")
+
+    @classmethod
+    def create_table(cls):
+        """Create Workout table in company.db"""
+        sql = """
+            CREATE TABLE IF NOT EXISTS workouts (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            member_id INTEGER,
+            FOREIGN KEY (member_id))
+        """
+    

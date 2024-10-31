@@ -29,9 +29,9 @@ class Member:
     def create_table(cls):
         """Create Member table in company.db"""
         sql = """
-        CREATE TABLE IF NOT EXISTS members (
-        id INTEGER PRIMARY KEY,
-        name TEXT)
+            CREATE TABLE IF NOT EXISTS members (
+            id INTEGER PRIMARY KEY,
+            name TEXT)
          """
         CURSOR.execute(sql)
         CONN.commit()
