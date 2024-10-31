@@ -55,7 +55,7 @@ class Workout:
             id INTEGER PRIMARY KEY,
             name TEXT,
             member_id INTEGER,
-            FOREIGN KEY (member_id))
+            FOREIGN KEY (member_id) REFERENCES members(id))
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -68,4 +68,4 @@ class Workout:
         """
         CURSOR.execute(sql)
         CONN.commit()
-        
+
