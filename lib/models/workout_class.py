@@ -64,7 +64,7 @@ class Workout:
     def drop_table(cls):
         """Delete existing workout table in company.db"""
         sql = """
-            DROP TABLEif EXISTS workouts;
+            DROP TABLE IF EXISTS workouts;
         """
         CURSOR.execute(sql)
         CONN.commit()
