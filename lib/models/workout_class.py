@@ -1,15 +1,16 @@
 from models.__init__ import CURSOR, CONN
+from models.member import Member
 
-class Workout_class:
-    all = []
+class Workout:
+    all = {}
 
-    def __init__(self, name, id=None):
+    def __init__(self, name, member_id, id=None):
         self._name = name
         self._id = id
-        Workout_class.all.append(self)
+        self.member_id = member_id
 
     def __repr__(self):
-        return f"Workout Classes name={self.name} id={self.id}"
+        return f"Workout Classes name={self.name} id={self.id} member id={self.member_id}"
     
     @property
     def name(self):
@@ -25,12 +26,12 @@ class Workout_class:
             raise TypeError("Name must be a string")
 
     @property
-    def id(self):
-        return self._id
+    def member_id(self):
+        return self._member_id
 
-    @id.setter
-    def id(self, new_id):
+    @member_id.setter
+    def member_id(self, new_id):
         if isinstance(new_id, int):
-            self._id = new_id
+            self.member_id = new_id
         else:
             raise TypeError("Workout session number")

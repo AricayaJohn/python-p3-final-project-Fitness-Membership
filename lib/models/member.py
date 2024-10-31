@@ -25,16 +25,7 @@ class Member:
         else:
             raise TypeError("Name must be a s String")
             
-    @property
-    def member_id(self):
-        return self._id
 
-    @member_id.setter
-    def member_id(self, new_id):
-        if isinstance(new_id, int):
-            self._id = new_id
-        else:
-            raise TypeError("Member id must be an integer")
 
 
     
