@@ -32,6 +32,17 @@ class Workout:
     @member_id.setter
     def member_id(self, new_id):
         if isinstance(new_id, int):
-            self.member_id = new_id
+            self._member_id = new_id
         else:
             raise TypeError("Workout session number")
+    
+    @property
+    def id(self):
+        return self._id
+    
+    @id.setter
+    def id(self, new_id):
+        if isinstance(new_id, int):
+            self._id = new_id
+        else:
+            raise TypeError("Id must be a number")
