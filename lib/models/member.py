@@ -36,14 +36,5 @@ class Member:
         else:
             raise TypeError("Member id must be an integer")
 
-    @property
-    def class_id(self):
-        return self._class_id
 
-    @class_id.setter
-    def class_id(self, new_class_id):
-        if isinstance(new_class_id, int) and Workout_class.find_by_id(new_class_id):
-            self._class_id = new_class_id
-        else:
-            raise ValueError("Must input valid Class_id")
     
