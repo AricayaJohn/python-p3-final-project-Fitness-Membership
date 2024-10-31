@@ -44,3 +44,14 @@ class Member:
         """
         CURSOR.execute(sql)
         CONN.commit()
+
+    @classmethod
+    def save(self):
+        sql = """
+            INSERT INTO members (name)
+            VALUES(?)
+        """
+        CURSOR.execute(sql, (self.name))
+        CONN.commit()
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
