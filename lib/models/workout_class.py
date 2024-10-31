@@ -57,4 +57,15 @@ class Workout:
             member_id INTEGER,
             FOREIGN KEY (member_id))
         """
+        CURSOR.execute(sql)
+        CONN.commit()
     
+    @classmethod
+    def drop_table(cls):
+        """Delete existing workout table in company.db"""
+        sql = """
+            DROP TABLEif EXISTS workouts;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+        
