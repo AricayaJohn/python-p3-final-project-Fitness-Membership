@@ -1,17 +1,14 @@
 from models.__init__ import CONN, CURSOR
 
 class Member:
+    all = {}
 
-    all = []
-
-    def __init__(self, name, id=None, class_id):
-        self.name = name
+    def __init__(self, name, id=None):
         self.id = id
-        self.class_id  = class_id
-        Member.all.append(self)
+        self.name = name
 
     def __repr__(self):
-        return f"Member name={self.name} id={self.id} class_id = {self.class_id}"
+        return f"Member name={self.name} id={self.id}"
 
     @property
     def name(self):
@@ -41,4 +38,10 @@ class Member:
     def class_id(self):
         return self._class_id
 
+    @class_id.setter
+    def class_id(self, new_class_id):
+        if isinstance(new_class_id, int) and Workout_class.find_by_id(new_class_id):
+            self._class_id = new_class_id
+        else:
+            raise ValueError("Must input valid Class_id")
     
