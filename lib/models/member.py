@@ -24,8 +24,23 @@ class Member:
             self._name = new_name
         else:
             raise TypeError("Name must be a s String")
-            
 
+    @classmethod
+    def create_table(cls):
+        """Create Member table in company.db"""
+        sql = """
+        CREATE TABLE IF NOT EXISTS members (
+        id INTEGER PRIMARY KEY,
+        name TEXT)
+         """
+        CURSOR.execute(sql)
+        CONN.commit()
 
-
-    
+    @classmethod
+    def drop_table(cls):
+        """ Drop the existing Member table in company.db"""
+        sql = """
+            DROP TABLE IF EXISTS members;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
