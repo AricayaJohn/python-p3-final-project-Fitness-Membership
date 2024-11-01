@@ -1,14 +1,16 @@
 from models.__init__ import CONN, CURSOR
 
 class Member:
-    all = {}
+    all = []
 
-    def __init__(self, name, id=None):
+    def __init__(self, name, email, id=None):
         self.id = id
         self._name = name
+        self._email = email
+        Member.all.append(self)
 
     def __repr__(self):
-        return f"Member name={self.name} id={self.id}"
+        return f"Member name={self.name} email={self.email} id={self.id}"
 
     @property
     def name(self):
@@ -16,14 +18,21 @@ class Member:
 
     @name.setter
     def name(self, new_name):
-        if isinstance(new_name, str):
-            if len(new_name) == 0:
-                raise ValueError("Input name canot be empty")
-            elif hasattr(self, "_name"):
-                raise ValueError("member already has a name")
+        if isinstance(new_name, str) and len(new_name) > 0:
             self._name = new_name
         else:
-            raise TypeError("Name must be a s String")
+            raise TypeError("Name must have String value")
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, new_email):
+        if isinstance(new_email, str):
+            self._email = new_email
+        else:
+            raise ValueError("Email must be a string")
 
     @classmethod
     def create_table(cls):
@@ -31,7 +40,8 @@ class Member:
         sql = """
             CREATE TABLE IF NOT EXISTS members (
             id INTEGER PRIMARY KEY,
-            name TEXT)
+            name TEXT,
+            email TEXT)
          """
         CURSOR.execute(sql)
         CONN.commit()
@@ -45,13 +55,12 @@ class Member:
         CURSOR.execute(sql)
         CONN.commit()
 
-    @classmethod
     def save(self):
         sql = """
-            INSERT INTO members (name)
-            VALUES(?)
+            INSERT INTO members (name, email)
+            VALUES(?,?)
         """
-        CURSOR.execute(sql, (self.name))
+        CURSOR.execute(sql, (self.name, self.email))
         CONN.commit()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self

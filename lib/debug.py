@@ -8,6 +8,11 @@ from models.workout_class import Workout
 
 import ipdb
 
-# seed_database()
 
 ipdb.set_trace()
+
+
+# seed_database()
+# Member.create_table()
+# m1 = Member("John", "john123@gmail.com")
+# m1.save()
