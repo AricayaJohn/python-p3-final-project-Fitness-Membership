@@ -80,3 +80,13 @@ class Member:
         """
         CURSOR.execute(sql, (self.name, self.email, self.id))
         CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM members
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        del type(self).all[self.id]
+        self.id = None
