@@ -1,13 +1,12 @@
 from models.__init__ import CONN, CURSOR
 
 class Member:
-    all = []
+    all = {}
 
     def __init__(self, name, email, id=None):
         self.id = id
         self._name = name
         self._email = email
-        Member.all.append(self)
 
     def __repr__(self):
         return f"Member name={self.name} email={self.email} id={self.id}"
@@ -64,3 +63,10 @@ class Member:
         CONN.commit()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, email):
+        member = Member(name, email)
+        member.save()
+
+        return member
