@@ -70,3 +70,13 @@ class Member:
         member.save()
 
         return member
+
+    def update(self):
+        sql = """
+            UPDATE members
+            SET name = ?,
+                email = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.email, self.id))
+        CONN.commit()
