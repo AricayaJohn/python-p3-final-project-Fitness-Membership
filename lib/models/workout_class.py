@@ -9,7 +9,7 @@ class Workout:
         self._trainer = trainer
 
     def __repr__(self):
-        return f"Workout Classes name={self.name} id={self.id} trainer ={self.trainer}"
+        return f"Workout Classes name={self.name} id={self.id} trainer={self.trainer}"
     
     @property
     def name(self):
@@ -118,3 +118,24 @@ class Workout:
         rows = CURSOR.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows]
 
+    @classmethod
+    def find_by_id(cls, id):
+        """Return Coresponding Workout row by id"""
+        sql = """
+            SELECT *
+            FROM workouts
+            WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+
+    @classmethod
+    def find_by_name(cls, name):
+        """Return coresponding workout row by name"""
+        sql = """
+            SELECT *
+            FROM workouts
+            WHERE name = ?
+        """
+        rows = CURSOR.execute(sql, (name,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]

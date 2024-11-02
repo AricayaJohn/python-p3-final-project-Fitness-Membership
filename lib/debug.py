@@ -105,3 +105,16 @@ ipdb.set_trace()
 # ipdb> Workout.get_all()
 # [Workout Classes name=Boxing id=1 trainer =tyson, Workout Classes name=yoga id=2 trainer =sydney, Workout Classes name=Biking id=3 trainer =Arnold, Workout Classes name=walking id=4 trainer =kobe, Workout Classes name=cardio id=5 trainer =kobe, Workout Classes name=surfing id=6 trainer =nadal]
 
+#____Testing Workout find_by_id_________
+# ipdb> Workout.find_by_id(2)
+# Workout Classes name=yoga id=2 trainer =sydney
+
+#___Testing Workout find_by_name______
+# ipdb> m7 = Workout.create("cardio", "Bolt")
+# ipdb> workout.find_by_id()
+# *** NameError: name 'workout' is not defined
+# ipdb> workout.find_by_name("cardio")
+# *** NameError: name 'workout' is not defined
+# ipdb> Workout.find_by_name("cardio")
+# [Workout Classes name=cardio id=5 trainer =kobe, Workout Classes name=cardio id=7 trainer =Bolt]
+
