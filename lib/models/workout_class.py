@@ -85,3 +85,27 @@ class Workout:
         CURSOR.execute(sql, (self.name, self.trainer, self.id))
         CONN.commit()
 
+    def delete(self):
+        """Delete row base on id"""
+        sql = """
+            DELETE FROM workouts
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+    @classmethod
+    def instance_from_db(cls, row):
+        """ Returns the row objects in the Workout table"""
+
+        workout = cls.all.get(row[0])
+        if workout:
+            workout.name = row[1]
+            workout.trainer = row[2]
+        else:
+            workout = cls(row[1], row[2])
+            workout.id = row[0]
+            cls.all[workout.id] = workout
+        return workout
+
+    

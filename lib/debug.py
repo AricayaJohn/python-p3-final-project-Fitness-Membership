@@ -95,3 +95,7 @@ ipdb.set_trace()
 # ipdb> w6.update()
 # ipdb> w6
 # Workout Classes name=surfing id=6 trainer =nadal
+
+#____Testing delete instance_________
+# ipdb> w7 = Workout.create("climbing", "serena")
+# ipdb> w7.delete()
