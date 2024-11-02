@@ -31,7 +31,7 @@ class Workout:
     @trainer.setter
     def trainer(self, new_trainer):
         if isinstance(new_trainer, str) and len(new_trainer) > 0:
-            self._new_trainer = new_trainer
+            self._trainer = new_trainer
         else:
             raise TypeError("Trainer must have string value")
 
@@ -67,4 +67,21 @@ class Workout:
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, trainer):
+        member = cls(name, trainer)
+        member.save()
+        return member
+
+    def update(self):
+        """UPDATE the table row"""
+        sql = """
+            UPDATE workouts
+            SET name = ?,
+                trainer = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.trainer, self.id))
+        CONN.commit()
 

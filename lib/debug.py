@@ -74,3 +74,24 @@ ipdb.set_trace()
 # ipdb> w1.name
 # 'Boxing'
 # ipdb> w1.save()
+
+#_______Testing save instance_________
+# ipdb> w1 = Workout("Boxing", "tyson")
+# ipdb> w1.name
+# 'Boxing'
+# ipdb> w1.save()
+
+#_______ Testing create classmethod______
+#ipdb> w2 = Workout.create("yoga", "sydney")
+#ipdb> w2
+# Workout Classes name=yoga id=2 trainer =sydney
+
+
+#_____Testing update instance________
+# ipdb> w6 = Workout.create("climbing", "nadal")
+# ipdb> w6
+# Workout Classes name=climbing id=6 trainer =nadal
+# ipdb> w6.name = "surfing"
+# ipdb> w6.update()
+# ipdb> w6
+# Workout Classes name=surfing id=6 trainer =nadal
