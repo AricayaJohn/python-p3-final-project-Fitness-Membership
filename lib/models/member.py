@@ -111,4 +111,24 @@ class Member:
         """
         rows = CURSOR.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows]
-        
+
+
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT * FROM members
+            WHERE id = ?
+            LIMIT 1 
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+
+    
+    @classmethod
+    def find_by_name(cls, name):
+        sql = """
+            SELECT * FROM members
+            WHERE name = ?
+        """
+        rows = CURSOR.execute(sql, (name,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]

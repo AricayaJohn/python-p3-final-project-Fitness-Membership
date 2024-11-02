@@ -50,3 +50,18 @@ ipdb.set_trace()
 # ipdb> m13.save()
 # ipdb> m13.delete()
 
+#_____________Checking get_all_____________________
+# ipdb> member13 = Member("cena", "cena123@gmail.com")
+# ipdb> member13.save()
+# ipdb> Member.get_all()
+
+#____________Find by id test_____________________
+# ipdb> Member.find_by_id(2)
+# Member name=bro email=bro123@gmail.com id=2
+
+#____________Find by name test____________________
+#ipdb> Member.find_by_name("John")
+# [Member name=John email=john123@gmail.com id=1]
+# ipdb> Member.find_by_name("al")
+# [Member name=al email=al123@gmail.com id=3, Member name=al email=al123@gmail.com id=4, Member name=al email=al123@gmail.com id=5]
+
