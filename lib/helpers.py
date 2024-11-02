@@ -51,3 +51,12 @@ def update_member():
             print("Error updating", exc)
     else:
         print("Member not found.")
+
+def delete_member():
+    id_ = input("Enter the member's ID to delete: ")
+    if member := Member.find_by_id(id_):
+        member.delete()
+        print(f"Successfully deleted member with ID: {id_}")
+    else:
+        print("Member not found.")
+        
