@@ -1,16 +1,14 @@
 from models.__init__ import CURSOR, CONN
-from models.member import Member
 
 class Workout:
     all = {}
 
-    def __init__(self, name, member_id, id=None):
+    def __init__(self, name, id=None):
         self._name = name
         self._id = id
-        self.member_id = member_id
 
     def __repr__(self):
-        return f"Workout Classes name={self.name} id={self.id} member id={self.member_id}"
+        return f"Workout Classes name={self.name} id={self.id}"
     
     @property
     def name(self):
@@ -24,28 +22,6 @@ class Workout:
             self._name = new_name
         else:
             raise TypeError("Name must be a string")
-
-    @property
-    def member_id(self):
-        return self._member_id
-
-    @member_id.setter
-    def member_id(self, new_id):
-        if isinstance(new_id, int):
-            self._member_id = new_id
-        else:
-            raise TypeError("Workout session number")
-    
-    @property
-    def id(self):
-        return self._id
-    
-    @id.setter
-    def id(self, new_id):
-        if isinstance(new_id, int):
-            self._id = new_id
-        else:
-            raise TypeError("Id must be a number")
 
     @classmethod
     def create_table(cls):

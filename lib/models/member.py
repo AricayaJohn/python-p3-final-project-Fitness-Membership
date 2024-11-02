@@ -1,15 +1,20 @@
 from models.__init__ import CONN, CURSOR
+from models.workout_class import Workout
 
 class Member:
     all = {}
 
-    def __init__(self, name, email, id=None):
+    def __init__(self, name, email, workout_id, id=None):
         self.id = id
         self._name = name
         self._email = email
+        self._workout_id = workout_id
 
     def __repr__(self):
-        return f"Member name={self.name} email={self.email} id={self.id}"
+        return (
+            f"<Member name={self.name} email={self.email} id={self.id} " + 
+            f"Workout ID: {self.workout_id}>"
+        )
 
     @property
     def name(self):
@@ -33,6 +38,19 @@ class Member:
         else:
             raise ValueError("Email must be a string")
 
+    @property
+    def workout_id(self):
+        return self._workout_id
+
+    @workout_id.setter
+    def workout_id(self, workout_id):
+        if type(workout_id) is int and Workout.find_by_id(workout_id):
+            self._workout_id = workout_id
+        else:
+            raise ValueError(
+                "Workout_id must reference a workout in the database"
+            )
+
     @classmethod
     def create_table(cls):
         """Create Member table in company.db"""
@@ -40,7 +58,8 @@ class Member:
             CREATE TABLE IF NOT EXISTS members (
             id INTEGER PRIMARY KEY,
             name TEXT,
-            email TEXT)
+            email TEXT,
+            Workout_id INTEGER)
          """
         CURSOR.execute(sql)
         CONN.commit()
@@ -56,17 +75,17 @@ class Member:
 
     def save(self):
         sql = """
-            INSERT INTO members (name, email)
-            VALUES(?,?)
+            INSERT INTO members (name, email, workout_id)
+            VALUES(?,?, ?)
         """
-        CURSOR.execute(sql, (self.name, self.email))
+        CURSOR.execute(sql, (self.name, self.email, self.workout_id))
         CONN.commit()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
     @classmethod
-    def create(cls, name, email):
-        member = Member(name, email)
+    def create(cls, name, email, workout_id):
+        member = Member(name, email, workout_id)
         member.save()
 
         return member
@@ -75,10 +94,11 @@ class Member:
         sql = """
             UPDATE members
             SET name = ?,
-                email = ?
+                email = ?,
+                workout_id = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.email, self.id))
+        CURSOR.execute(sql, (self.name, self.email, self.workout_id, self.id))
         CONN.commit()
 
     def delete(self):
@@ -97,9 +117,9 @@ class Member:
         if member:
             member.name = row[1]
             member.email = row[2]
-
+            member.workout_id = row[3]
         else:
-            member = cls(row[1], row[2])
+            member = cls(row[1], row[2], row[3])
             member.id = row[0]
             cls.all[member.id] = member
         return member
