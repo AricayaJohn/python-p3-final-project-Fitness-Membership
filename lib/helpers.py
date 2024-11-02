@@ -59,4 +59,15 @@ def delete_member():
         print(f"Successfully deleted member with ID: {id_}")
     else:
         print("Member not found.")
-        
+
+def list_member_workouts():
+    id_ = input("Enter the member's Id: ")
+    if member := Member.find_by_id(id_):
+        workout = Workout.find_by_id(member.workout_id)
+        if workout:
+            print(f"Member {member.name} is entrolled in: {workout.name}")
+        else:
+            print("No workout found")
+    else:
+        print("Member not found")
+
