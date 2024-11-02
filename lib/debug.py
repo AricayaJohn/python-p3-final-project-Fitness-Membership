@@ -118,3 +118,6 @@ ipdb.set_trace()
 # ipdb> Workout.find_by_name("cardio")
 # [Workout Classes name=cardio id=5 trainer =kobe, Workout Classes name=cardio id=7 trainer =Bolt]
 
+#____How to use seed.py____
+# python seed.py on terminal
+# This will reset all tables to set starter db
