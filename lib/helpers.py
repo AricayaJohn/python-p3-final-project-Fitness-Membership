@@ -21,4 +21,4 @@ def create_member():
         member = Member.create(name, email, workout_id)
         print(f'Sign-up for new member: {member} successful')
     except Exception as exc:
-        print("Error creating new member: " exc)
+        print("Error creating new member: ", exc)
