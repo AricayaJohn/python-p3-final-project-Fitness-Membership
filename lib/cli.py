@@ -3,7 +3,8 @@
 from helpers import (
     exit_program,
     list_members,
-    create_member
+    create_member,
+    update_member
 )
 
 
@@ -17,6 +18,8 @@ def main():
             list_members()
         elif choice == "2":
             create_member()
+        elif choice == "3":
+            update_member()
         else:
             print("Invalid choice")
 
@@ -26,6 +29,7 @@ def menu():
     print("0. Exit the program")
     print("1. List of all members")
     print("2. Create new member")
+    print("3. Update member information")
 
 
 if __name__ == "__main__":

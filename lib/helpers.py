@@ -22,3 +22,32 @@ def create_member():
         print(f'Sign-up for new member: {member} successful')
     except Exception as exc:
         print("Error creating new member: ", exc)
+
+def update_member():
+    id_ = input("Enter the member's ID: ")
+    if member := Member.find_by_id(id_):
+        print("Select which to update: ")
+        print("1. Name")
+        print("2. Email")
+        print("3. Workout ID")
+        choice = input("> ")
+        try:
+            if choice == "1":
+                new_name = input("Enter the new name: ")
+                member.name = new_name
+            elif choice == "2":
+                new_email = input("Enter the new email: ")
+                member.email = new_email
+            elif choice == "3":
+                new_workout_id = input("Enter the new workout ID: ")
+                member.workout_id = new_workout_id
+            else:
+                print("Invalid choice")
+                return
+
+            member.update()
+            print(f"Successfully updated {member} information")
+        except Exception as exc:
+            print("Error updating", exc)
+    else:
+        print("Member not found.")
