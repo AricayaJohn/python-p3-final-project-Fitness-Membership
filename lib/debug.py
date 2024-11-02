@@ -81,13 +81,13 @@ ipdb.set_trace()
 # 'Boxing'
 # ipdb> w1.save()
 
-#_______ Testing create classmethod______
+#_______Testing Workout create classmethod______
 #ipdb> w2 = Workout.create("yoga", "sydney")
 #ipdb> w2
 # Workout Classes name=yoga id=2 trainer =sydney
 
 
-#_____Testing update instance________
+#_____Testing update Workout instance________
 # ipdb> w6 = Workout.create("climbing", "nadal")
 # ipdb> w6
 # Workout Classes name=climbing id=6 trainer =nadal
@@ -99,3 +99,9 @@ ipdb.set_trace()
 #____Testing delete instance_________
 # ipdb> w7 = Workout.create("climbing", "serena")
 # ipdb> w7.delete()
+
+
+#_____Testing workout get_all class method________
+# ipdb> Workout.get_all()
+# [Workout Classes name=Boxing id=1 trainer =tyson, Workout Classes name=yoga id=2 trainer =sydney, Workout Classes name=Biking id=3 trainer =Arnold, Workout Classes name=walking id=4 trainer =kobe, Workout Classes name=cardio id=5 trainer =kobe, Workout Classes name=surfing id=6 trainer =nadal]
+

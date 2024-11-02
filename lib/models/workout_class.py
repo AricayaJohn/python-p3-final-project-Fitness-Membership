@@ -108,4 +108,13 @@ class Workout:
             cls.all[workout.id] = workout
         return workout
 
-    
+    @classmethod
+    def get_all(cls):
+        """Return an object/list containing Workout data"""
+        sql = """
+            SELECT * 
+            FROM workouts
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+
