@@ -67,3 +67,10 @@ ipdb.set_trace()
 # ipdb> Member.find_by_name("al")
 # [Member name=al email=al123@gmail.com id=3, Member name=al email=al123@gmail.com id=4, Member name=al email=al123@gmail.com id=5]
 
+#__________Creating Workout table and instance_____
+# ipdb> Workout.drop_table()
+# ipdb> Workout.create_table()
+# ipdb> w1 = Workout("Boxing", "tyson")
+# ipdb> w1.name
+# 'Boxing'
+# ipdb> w1.save()

@@ -62,3 +62,9 @@ class Workout:
             INSERT INTO workouts (name, trainer)
             VALUES(?, ?)
         """
+        CURSOR.execute(sql, (self.name, self.trainer))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
+
