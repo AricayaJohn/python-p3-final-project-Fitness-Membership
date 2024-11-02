@@ -90,3 +90,25 @@ class Member:
         CONN.commit()
         del type(self).all[self.id]
         self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
+        member = cls.all.get(row[0])
+        if member:
+            member.name = row[1]
+            member.email = row[2]
+
+        else:
+            member = cls(row[1], row[2])
+            member.id = row[0]
+            cls.all[member.id] = member
+        return member
+
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT * FROM members
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+        
