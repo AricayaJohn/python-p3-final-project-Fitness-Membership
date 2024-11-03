@@ -110,3 +110,12 @@ def update_workouts():
             print("Error updating workout: ", exc)
     else:
         print("Workout not found.")
+
+def delete_workout():
+    id_ = input("Input the work id to be deleted: ")
+    if workout := Workout.find_by_id(id_):
+        workout.delete()
+        print(f"Successfully deleted workout with id : {id_}")
+    else:
+        print("Workout not found")
+
