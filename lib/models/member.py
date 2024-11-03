@@ -152,3 +152,13 @@ class Member:
         """
         rows = CURSOR.execute(sql, (name,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]
+
+    @classmethod
+    def find_member_by_workout(cls, workout_id):
+        sql = """
+            SELECT * FROM members
+            Where workout_id = ?
+        """
+        CURSOR.execute(sql, (workout_id,))
+        rows = CURSOR.fetchall()
+        return [cls.instance_from_db(row) for row in rows]

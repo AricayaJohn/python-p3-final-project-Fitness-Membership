@@ -119,3 +119,14 @@ def delete_workout():
     else:
         print("Workout not found")
 
+def find_member_by_workout():
+    workout_id = input("Enter the workout ID: ")
+    members = Member.find_member_by_workout(workout_id)
+    if members:
+        print(f"Members enrolled in Workout id {workout_id}: ")
+        for member in members:
+            print(member)
+    else:
+        print("no members foind for this workout id")
+        
+

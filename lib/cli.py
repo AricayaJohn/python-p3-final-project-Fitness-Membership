@@ -10,7 +10,8 @@ from helpers import (
     create_workout,
     list_workouts,
     update_workouts,
-    delete_workout
+    delete_workout,
+    find_member_by_workout
 )
 
 
@@ -38,6 +39,8 @@ def main():
             update_workouts()
         elif choice == "9":
             delete_workout()
+        elif choice == "10":
+            find_member_by_workout()
         else:
             print("Invalid choice")
 
@@ -54,6 +57,7 @@ def menu():
     print("7. Read all workouts")
     print("8. Update workout information")
     print("9. Delete workout")
+    print("10. Find member by workout")
 
 
 if __name__ == "__main__":
