@@ -80,4 +80,8 @@ def create_workout():
         print(f"Successfully created new workout: {workout.name}")
     except Exception as exc:
         print("Error in creating new workout: ", exc)
-        
+
+def list_workouts():
+    workouts = Workout.get_all()
+    for workout in workouts:
+        print(workout)
