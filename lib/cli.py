@@ -8,7 +8,8 @@ from helpers import (
     delete_member,
     list_member_workouts,
     create_workout,
-    list_workouts
+    list_workouts,
+    update_workouts
 )
 
 
@@ -32,6 +33,8 @@ def main():
             create_workout()
         elif choice == "7":
             list_workouts()
+        elif choice == "8":
+            update_workouts()
         else:
             print("Invalid choice")
 
@@ -46,6 +49,7 @@ def menu():
     print("5. Member enrolled workout")
     print("6. Create new workout class")
     print("7. Read all workouts")
+    print("8. Update workout information")
 
 
 if __name__ == "__main__":

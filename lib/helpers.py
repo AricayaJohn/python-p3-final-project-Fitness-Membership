@@ -85,3 +85,28 @@ def list_workouts():
     workouts = Workout.get_all()
     for workout in workouts:
         print(workout)
+
+def update_workouts():
+    id_ = input("Enter the workout's ID: ")
+    if workout := Workout.find_by_id(id_):
+        print("Select which workout to update")
+        print("1. Name")
+        print("2. Trainer")
+        choice = input("> ")
+        try:
+            if choice == "1":
+                new_name = input("Enter new workout name: ")
+                workout.name = new_name
+            elif choice == "2":
+                new_trainer = input("Enter new trainer name: ")
+                workout.trainer = new_trainer
+            else:
+                print("Invalid Choice")
+                return
+
+            workout.update()
+            print(f"Successfully updated workout: {workout.name}")
+        except Exception as exc:
+            print("Error updating workout: ", exc)
+    else:
+        print("Workout not found.")
