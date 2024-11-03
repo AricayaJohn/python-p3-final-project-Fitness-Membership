@@ -71,3 +71,13 @@ def list_member_workouts():
     else:
         print("Member not found")
 
+def create_workout():
+    name = input("Enter workout name: ")
+    trainer = input("Enter the trainer's name:")
+    try:
+        workout = Workout(name, trainer)
+        workout.save()
+        print(f"Successfully created new workout: {workout.name}")
+    except Exception as exc:
+        print("Error in creating new workout: ", exc)
+        
