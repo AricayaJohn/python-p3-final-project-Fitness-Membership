@@ -41,7 +41,10 @@ https://github.com/AricayaJohn/python-p3-final-project-Fitness-Membership
 $pipenv install
 
 3. Enter virtual environment
-$pipenv shell
+$pipenv shell 
+
+4. Install ipdb //forchecks and debugs
+$pip install ipdb or pipenv install ipdb
 
 4. To use the CLI:
 $python lib/cli.py
@@ -53,6 +56,9 @@ $python lib/cli.py
 2. Create a cli option in cli.py for your new method or instance
 
 3. Create a helper method that can interact with your class model file if needed
+
+4. Use debug file by importing ipdb;ipdb.set_trace to check work
+$python lib/models/debug.py
 
 ##CLI main menu:
 
