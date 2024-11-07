@@ -4,7 +4,7 @@
 from models.__init__ import CONN, CURSOR
 from models.member import Member
 from models.workout_class import Workout
-# from seed import seed_database
+from seed import seed_database
 
 import ipdb
 
