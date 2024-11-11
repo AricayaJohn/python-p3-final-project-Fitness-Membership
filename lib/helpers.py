@@ -115,8 +115,8 @@ def list_workouts():
         print(workout)
 
 def update_workouts():
-    id_ = input("Enter the workout's ID: ")
-    if workout := Workout.find_by_id(id_):
+    id = input("Enter the workout's ID: ")
+    if workout := Workout.find_by_id(id):
         print("Select which workout to update")
         print("1. Name")
         print("2. Trainer")
@@ -140,8 +140,8 @@ def update_workouts():
         print("Workout not found.")
 
 def delete_workout():
-    id_ = input("Input the work id to be deleted: ")
-    if workout := Workout.find_by_id(id_):
+    id = input("Input the workout id to be deleted: ")
+    if workout := Workout.find_by_id(id):
         workout.delete()
         print(f"Successfully deleted workout with id : {id_}")
     else:
@@ -156,8 +156,12 @@ def find_member_by_workout():
             print(member)
     else:
         print("no members foind for this workout id")
-        
 
+def list_workouts():
+    workouts = Workout.get_all()
+    for i, workout in enumerate(workouts, start = 1):
+        print(f"{i}, {workout.name}")
+        
 def exit_program():
     print("You are about to leave, bye-bye!")
     exit()
