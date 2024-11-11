@@ -16,7 +16,7 @@ def create_member():
     workout_id = input("Enter member's choice of workout by id: ")
     try:
         member = Member.create(name, email, workout_id)
-        print(f'Sign-up for new member: {member} successful')
+        print(f'Sign-up for new member successful')
     except Exception as exc:
         print("Error creating new member: ", exc)
 
@@ -58,17 +58,39 @@ def update_member():
     else:
         print("Member not found.")
 
-def delete_member():
-    id_ = input("Enter the member's ID to delete: ")
-    if member := Member.find_by_id(id_):
-        member.delete()
-        print(f"Successfully deleted member with ID: {id_}")
-    else:
+def delete_member(): 
+    name = input("Enter the member's name to delete: ")
+    members = Member.find_by_name(name) 
+    
+    if members: 
+        if len(members) > 1: 
+            print(f"Multiple members found with name {name}") 
+            for i, member in enumerate(members, start=1): 
+                print(f"{i} {member.name}") 
+            choice = int(input("Enter the number of the member to delete: ")) -1 
+            member_to_delete = members[choice]
+        else:
+            member_to_delete = members[0] 
+        member_to_delete.delete() 
+        print(f"Successfully deleted member: {member_to_delete.name}")
+    else: 
         print("Member not found.")
 
 def list_member_workouts():
-    id_ = input("Enter the member's Id: ")
-    if member := Member.find_by_id(id_):
+    name = input("Enter the member's name: ")
+    members = Member.find_by_name(name)
+
+    if members:
+        if len(members) > 1:
+            print(f"Multiple members found with name '{name}' :")
+            for i, member in enumerate(members, start=1):
+                print(f"{i}. {member.name}")
+
+            choice = int(input("Enter the number of the member to view workouts: "))       
+            member = members[choice]
+        else: 
+            member = members[0]
+
         workout = Workout.find_by_id(member.workout_id)
         if workout:
             print(f"Member {member.name} is entrolled in: {workout.name}")
