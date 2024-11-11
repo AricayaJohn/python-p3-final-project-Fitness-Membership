@@ -10,11 +10,11 @@ class Member:
         self._email = email
         self._workout_id = workout_id
 
-    def __repr__(self):
-        return (
-            f"<Member name={self.name} email={self.email} id={self.id} " + 
-            f"Workout ID: {self.workout_id}>"
-        )
+    # def __repr__(self):
+    #     return (
+    #         f"<Member name={self.name} email={self.email} id={self.id} " + 
+    #         f"Workout ID: {self.workout_id}>"
+    #     )
 
     @property
     def name(self):

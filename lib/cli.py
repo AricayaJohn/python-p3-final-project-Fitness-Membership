@@ -14,51 +14,87 @@ from helpers import (
     find_member_by_workout
 )
 
+def member_menu():
+    print("\nMember Management:")
+    print("1. List all members")
+    print("2. Create new member")
+    print("3. Update member information")
+    print("4. Delete Member information")
+    print("5. Member enrolled Workout")
+    print("b. Back to main menu")
+    choice = input("> ")
+    return choice
+
+def workout_menu():
+    print("\nWorkout Management:")
+    print("1. Read all workouts")
+    print("2. Create new workout class")
+    print("3. Update workout information")
+    print("4. Delete workout")
+    print("5. Find member by workout")
+    print("b.back to main menu")
+    choice = input("> ")
+    return choice
 
 def main():
     while True:
-        menu()
+        print("\nGym Management System")
+        print("1. Member Management")
+        print("2. Workout Management")
+        print("e. Exit the program")
         choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            list_members()
+
+        if choice == "1":
+            while True:
+                member_choice = member_menu()
+                if member_choice == "1":
+                    list_members()
+                elif member_choice == "2":
+                    create_member()
+                elif member_choice == "3":
+                    update_member()
+                elif member_choice == "4":
+                    delete_member()
+                elif member_choice == "5":
+                    list_member_workouts()
+                elif member_choice == "b":
+                    break
+                else:
+                    print("invalid choice")
         elif choice == "2":
-            create_member()
-        elif choice == "3":
-            update_member()
-        elif choice == "4":
-            delete_member()
-        elif choice == "5":
-            list_member_workouts()
-        elif choice == "6":
-            create_workout()
-        elif choice == "7":
-            list_workouts()
-        elif choice == "8":
-            update_workouts()
-        elif choice == "9":
-            delete_workout()
-        elif choice == "10":
-            find_member_by_workout()
+            while True:
+                workout_choice = workout_menu()
+                if workout_choice == "1":
+                    list_workouts()
+                elif workout_choice == "2":
+                    create_workout()
+                elif workout_choice == "3":
+                    update_workouts()
+                elif workout_choice == "4":
+                    delete_workout()
+                elif workout_choice == "5":
+                    find_member_by_workout()
+                elif workout_choice == "b":
+                    break
+                else:
+                    print("Invalid choice")
+        elif choice == "e":
+            exit_program()
+            break
         else:
             print("Invalid choice")
 
 
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. List of all members")
-    print("2. Create new member")
-    print("3. Update member information")
-    print("4. Delete member information")
-    print("5. Member enrolled workout")
-    print("6. Create new workout class")
-    print("7. Read all workouts")
-    print("8. Update workout information")
-    print("9. Delete workout")
-    print("10. Find member by workout")
-
-
 if __name__ == "__main__":
     main()
+
+
+
+#comment repr
+#loops 
+#make frontend better
+#change cli and helpers
+
+# type list of work on 
+# add to next 
+# would you like to 

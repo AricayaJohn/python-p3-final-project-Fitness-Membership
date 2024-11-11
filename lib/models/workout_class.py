@@ -8,8 +8,8 @@ class Workout:
         self._id = id
         self._trainer = trainer
 
-    def __repr__(self):
-        return f"Workout Classes name={self.name} id={self.id} trainer={self.trainer}"
+    # def __repr__(self):
+    #     return f"Workout Classes name={self.name} id={self.id} trainer={self.trainer}"
     
     @property
     def name(self):

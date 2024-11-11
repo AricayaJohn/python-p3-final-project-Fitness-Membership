@@ -4,14 +4,11 @@ from models.__init__ import CURSOR, CONN
 from models.member import Member
 from models.workout_class import Workout
 
-def exit_program():
-    print("Goodbye!")
-    exit()
 
 def list_members():
     members = Member.get_all()
-    for member in members:
-        print(member)
+    for i, member in enumerate(members, start = 1):
+        print(f"{i}, {member.name}")
 
 def create_member():
     name = input("Enter new member's name: ")
@@ -24,13 +21,19 @@ def create_member():
         print("Error creating new member: ", exc)
 
 def update_member():
-    id_ = input("Enter the member's ID: ")
-    if member := Member.find_by_id(id_):
+    name = input("Enter the member's name: ")
+    members = Member.find_by_name(name)
+
+    if members:
+        member = members[0]
+        print(f"\n Member found: {member.name}")
+
         print("Select which to update: ")
         print("1. Name")
         print("2. Email")
         print("3. Workout ID")
         choice = input("> ")
+
         try:
             if choice == "1":
                 new_name = input("Enter the new name: ")
@@ -39,14 +42,17 @@ def update_member():
                 new_email = input("Enter the new email: ")
                 member.email = new_email
             elif choice == "3":
-                new_workout_id = input("Enter the new workout ID: ")
-                member.workout_id = new_workout_id
+                new_workout_id = int(input("Enter the new workout ID: "))
+                if Workout.find_by_id(new_workout_id):
+                    member.workout_id = new_workout_id
+                else: print("invalid workout id")
+                return
             else:
                 print("Invalid choice")
                 return
 
             member.update()
-            print(f"Successfully updated {member} information")
+            print(f"Successfully updated {member.name} information")
         except Exception as exc:
             print("Error updating", exc)
     else:
@@ -130,3 +136,6 @@ def find_member_by_workout():
         print("no members foind for this workout id")
         
 
+def exit_program():
+    print("You are about to leave, bye-bye!")
+    exit()
