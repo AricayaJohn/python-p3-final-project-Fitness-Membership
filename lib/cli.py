@@ -32,13 +32,21 @@ def workout_menu():
     print("3. Update workout information")
     print("4. Delete workout")
     print("5. Find member by workout")
-    print("b.back to main menu")
+    print("b. Back to main menu")
     choice = input("> ")
     return choice
 
-def main():
+def prompt_for_employee_name():
+    name = input("Enter employee's name: ")
+    return name
+
+def confirm_action(message):
+    confirmation = input(f"{message} (y/n): ").lower()
+    return confirmation == 'y'
+
+def main(employee_name):
     while True:
-        print("\nGym Management System")
+        print(f"\nWelcome, {employee_name}! Gym Management System")
         print("1. Member Management")
         print("2. Workout Management")
         print("e. Exit the program")
@@ -60,7 +68,7 @@ def main():
                 elif member_choice == "b":
                     break
                 else:
-                    print("invalid choice")
+                    print("Invalid choice")
         elif choice == "2":
             while True:
                 workout_choice = workout_menu()
@@ -86,15 +94,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    employee_name = prompt_for_employee_name()
+    if confirm_action("Do you want to proceed to the main menu?"):
+        main(employee_name)
+    else:
+        print("Goodbye!")
 
 
-
-#comment repr
-#loops 
-#make frontend better
-#change cli and helpers
-
-# type list of work on 
-# add to next 
-# would you like to 

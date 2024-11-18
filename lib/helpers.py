@@ -16,7 +16,7 @@ def create_member():
     workout_id = input("Enter member's choice of workout by id: ")
     try:
         member = Member.create(name, email, workout_id)
-        print(f'Sign-up for new member successful')
+        print('Sign-up for new member successful')
     except Exception as exc:
         print("Error creating new member: ", exc)
 

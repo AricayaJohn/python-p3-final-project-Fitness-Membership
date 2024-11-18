@@ -7,7 +7,7 @@ class Member:
     def __init__(self, name, email, workout_id, id=None):
         self.id = id
         self._name = name
-        self._email = email
+        self.email = email
         self._workout_id = workout_id
 
     # def __repr__(self):
@@ -32,11 +32,12 @@ class Member:
         return self._email
 
     @email.setter
-    def email(self, new_email):
-        if isinstance(new_email, str):
-            self._email = new_email
-        else:
-            raise ValueError("Email must be a string")
+    def email(self, new_email): 
+        if isinstance(new_email, str) and '@' in new_email: 
+            self._email = new_email 
+        else: 
+            raise ValueError("Email must be a string containing '@'")
+
 
     @property
     def workout_id(self):
