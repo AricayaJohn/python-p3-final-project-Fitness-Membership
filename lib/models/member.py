@@ -6,7 +6,7 @@ class Member:
 
     def __init__(self, name, email, workout_id, id=None):
         self.id = id
-        self._name = name
+        self.name = name
         self.email = email
         self._workout_id = workout_id
 
@@ -23,7 +23,12 @@ class Member:
     @name.setter
     def name(self, new_name):
         if isinstance(new_name, str) and len(new_name) > 0:
-            self._name = new_name
+            if new_name[0].isupper():
+                self._name = new_name
+            else:
+                raise ValueError("""
+                Name must start with a capital letter
+                """)
         else:
             raise TypeError("Name must have String value")
 
@@ -34,10 +39,12 @@ class Member:
     @email.setter
     def email(self, new_email): 
         if isinstance(new_email, str) and '@' in new_email: 
-            self._email = new_email 
+            if hasattr(new_email, '__contains__') and '.com' in new_email:
+                self._email = new_email 
+            else:
+                raise ValueError("Email must contain '.com' ")
         else: 
             raise ValueError("Email must be a string containing '@'")
-
 
     @property
     def workout_id(self):
@@ -60,7 +67,7 @@ class Member:
             id INTEGER PRIMARY KEY,
             name TEXT,
             email TEXT,
-            Workout_id INTEGER)
+            workout_id INTEGER)
          """
         CURSOR.execute(sql)
         CONN.commit()
@@ -109,6 +116,7 @@ class Member:
         """
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
+
         del type(self).all[self.id]
         self.id = None
 
@@ -143,7 +151,6 @@ class Member:
         """
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
-
     
     @classmethod
     def find_by_name(cls, name):
@@ -160,6 +167,5 @@ class Member:
             SELECT * FROM members
             Where workout_id = ?
         """
-        CURSOR.execute(sql, (workout_id,))
-        rows = CURSOR.fetchall()
+        rows = CURSOR.execute(sql, (workout_id,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]

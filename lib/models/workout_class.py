@@ -4,7 +4,7 @@ class Workout:
     all = {}
 
     def __init__(self, name, trainer, id=None):
-        self._name = name
+        self.name = name
         self._id = id
         self._trainer = trainer
 
@@ -18,9 +18,13 @@ class Workout:
     @name.setter
     def name(self, new_name):
         if isinstance(new_name, str):
-            if len(new_name) == 0:
+            if len(new_name) > 0:
+                if new_name[0].isupper():
+                    self._name = new_name
+                else:
+                    raise ValueError("""Input must have a capital letter""")
+            else:
                 raise ValueError("Input name cannot be empty")
-            self._name = new_name
         else:
             raise TypeError("Name must be a string")
 

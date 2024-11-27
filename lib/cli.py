@@ -11,11 +11,12 @@ from helpers import (
     list_workouts,
     update_workouts,
     delete_workout,
-    find_member_by_workout
+    find_member_by_workout,
+    check_trainers
 )
 
 def member_menu():
-    print("\nMember Management:")
+    print("\nChoose a number to Manage Member information:")
     print("1. List all members")
     print("2. Create new member")
     print("3. Update member information")
@@ -26,7 +27,7 @@ def member_menu():
     return choice
 
 def workout_menu():
-    print("\nWorkout Management:")
+    print("\nChoose a number to Manage Workout classes:")
     print("1. Read all workouts")
     print("2. Create new workout class")
     print("3. Update workout information")
@@ -46,7 +47,10 @@ def confirm_action(message):
 
 def main(employee_name):
     while True:
-        print(f"\nWelcome, {employee_name}! Gym Management System")
+        print(f"""
+                Welcome, {employee_name}! 
+                You are now using our Gym Management System
+                """)
         print("1. Member Management")
         print("2. Workout Management")
         print("e. Exit the program")
@@ -74,6 +78,7 @@ def main(employee_name):
                 workout_choice = workout_menu()
                 if workout_choice == "1":
                     list_workouts()
+                    check_trainers()
                 elif workout_choice == "2":
                     create_workout()
                 elif workout_choice == "3":

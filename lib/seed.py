@@ -13,7 +13,9 @@ def seed_database():
 # _______#create starter data
 # _______#member starter data
     m1 = Member.create("John", "john123@gmail.com", 1)
-    m2 = Member.create("Peter", "perter123@gmail.com", 2)
+    m2 = Member.create("Peter", "peter123@gmail.com", 2)
+    m3 = Member.create("Nik", "Nik123@gmail.com", 3)
+    m4 = Member.create("King", "king123@gmail.com", 1)
 
 # _______#Workout starter data
     Workout.create("Boxing", "Tyson")

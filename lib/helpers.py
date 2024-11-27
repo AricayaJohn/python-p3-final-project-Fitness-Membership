@@ -73,6 +73,8 @@ def delete_member():
             member_to_delete = members[0] 
         member_to_delete.delete() 
         print(f"Successfully deleted member: {member_to_delete.name}")
+    
+        Member.all = {member.id: member for member in Member.get_all()}
     else: 
         print("Member not found.")
 
@@ -114,6 +116,18 @@ def list_workouts():
     for workout in workouts:
         print(workout)
 
+def check_trainers():
+    check_trainers = input("\nDo you want to check the trainers for each class (y/n): ").lower()
+    if check_trainers == "y":
+        workouts = Workout.get_all()
+        print("""
+        Workout Classes and Trainers: 
+        """)
+        for workout in workouts:
+            print(f"{workout.name}: {workout.trainer}")
+    else:
+        print("\nReturning to workout menu")
+
 def update_workouts():
     id = input("Enter the workout's ID: ")
     if workout := Workout.find_by_id(id):
@@ -143,7 +157,7 @@ def delete_workout():
     id = input("Input the workout id to be deleted: ")
     if workout := Workout.find_by_id(id):
         workout.delete()
-        print(f"Successfully deleted workout with id : {id_}")
+        print(f"Successfully deleted workout with id : {id}")
     else:
         print("Workout not found")
 
@@ -151,11 +165,11 @@ def find_member_by_workout():
     workout_id = input("Enter the workout ID: ")
     members = Member.find_member_by_workout(workout_id)
     if members:
-        print(f"Members enrolled in Workout id {workout_id}: ")
+        print(f"Members enrolled in Workout ID {workout_id}: ")
         for member in members:
-            print(member)
+            print(member.name)
     else:
-        print("no members foind for this workout id")
+        print("no members found for this workout id")
 
 def list_workouts():
     workouts = Workout.get_all()
